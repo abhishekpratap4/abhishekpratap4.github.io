@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="Content/toastr.min.css" rel="stylesheet" />
+<link href="Content/books.css" rel="stylesheet" />
+<script src="Scripts/jquery-1.8.2.js"></script>
+<script src="Scripts/knockout-2.2.0.js"></script>
+<script src="Scripts/toastr.min.js"></script>
+<script src="Scripts/helper/bookHelper.js"></script>
+
+<title>My book application</title>
+</head>
+<body>
+<section data-bind="with: booksAPIHelper.booksViewModel">
+    <section>
+        <input type="text" placeholder="search for a book" data-bind="value: searchString, event: { keyup: booksAPIHelper.handleKeyPress }" class="searchBox"/>
+        <span data-bind="click: getBooksList" class="buttons">Search</span>
+    </section>
+    <section>
+        <div id="booksList">
+            <table id="booksTable" cellspacing="0" cellpadding="0">
+                <thead>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th></th>
+                </thead>
+                <tbody data-bind="foreach: books">
+                    <tr data-bind="attr: {class: ($index() %2 === 0)?'even': 'odd'}">
+                        <td>
+                            <img class="bookCover" data-bind="attr: { src: Image, title: Title }" />
+                        </td>
+                        <td data-bind="text: Title"></td>
+                        <td data-bind="text: Description"></td>
+                        <td>
+                            <span class="buttons" data-bind="click: $parent.myBook.getBookInfo">Check</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="buttonWrapper">
+                <div class="prev" data-bind="visible: currentPage() > 1">
+                    <span data-bind="event: { click: $parent.gotoPrevPage }" class="buttons">Prev</span>
+                </div>
+                <div class="next" data-bind="visible: currentPage() < totalResultPage()">
+                    <span data-bind="event: { click: $parent.gotoNextPage }" class="buttons">Next</span>
+                </div>
+            </div>            
+        </div>
+        <div data-bind="visible: showBookPanel" id="booksPanel">
+            <ul data-bind="with: myBook">
+                <li data-bind="text: title"></li>
+                <li data-bind="text: author">By - </li>
+                <li data-bind="text: year"></li>
+                <li data-bind="text: publisher"></li>
+                <li data-bind="text: isbn"></li>
+                <li data-bind="text: numberOfPages"></li>
+                <li data-bind="text: subTitle"></li>
+                <li><a data-bind="attr: { href: downloadLink }" target="_blank">Download</a></li>
+                <li class="imageLi"><img data-bind="attr: {src: image}"/></li>
+            </ul>
+        </div>
+    </section>
+</section>
+</body>
+</html>

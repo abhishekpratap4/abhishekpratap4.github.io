@@ -1,0 +1,83 @@
+﻿body {
+}
+
+section {
+    padding: 5px 0 5px 0;
+}
+
+#booksTable {
+    min-width: 90%;
+    border: 1px solid black;    
+}
+
+    #booksTable td {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+    }
+
+#booksList {
+    width: 70%;
+    float: left;
+}
+
+#booksPanel {
+    width: 25%;
+    float: right;
+}
+
+.bookCover {
+    width: 100px;
+    height: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.buttons {
+    height: 32px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 2%;
+    border-radius: 5px;
+    margin-right: 5px;
+    background-color: #00bef2;
+    color: #fff;
+    cursor: pointer;
+}
+
+.searchBox {
+    height: 24px;
+    width: 70%;
+    font-size: 20px;
+    padding-bottom: 3px;
+}
+
+.even {
+    background-color: lightcyan;
+}
+
+.odd {
+    background-color: lightyellow;
+}
+
+.imageLi {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.prev {
+    float: left;
+}
+
+.next {
+    float: right;
+}
+
+.buttonWrapper {
+    width: 15%;
+    margin-left: 45%;
+    margin-top: 1%;
+}
