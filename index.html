@@ -50,11 +50,9 @@
         <div data-bind="visible: showBookPanel" id="booksPanel">
             <ul data-bind="with: myBook">
                 <li data-bind="text: title"></li>
-                <li data-bind="text: author">By - </li>
-                <li data-bind="text: year"></li>
-                <li data-bind="text: publisher"></li>
-                <li data-bind="text: isbn"></li>
-                <li data-bind="text: numberOfPages"></li>
+                <li data-bind="text: 'By - '.concat(author())"></li>
+                <li data-bind="text: 'Publication House - '.concat(publisher())"></li>
+                <li data-bind="text: 'ISBN - '.concat(isbn())"></li>
                 <li data-bind="text: subTitle"></li>
                 <li><a data-bind="attr: { href: downloadLink }" target="_blank">Download</a></li>
                 <li class="imageLi"><img data-bind="attr: {src: image}"/></li>

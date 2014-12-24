@@ -1,9 +1,20 @@
 ﻿var booksAPIHelper = {
 
     booksViewModel: {},
+
+    /**
+    * Key code for Enter key
+    */
     ENTER_KEY_CODE: 13,
+
+    /**
+    * Code for identifying if book is not found
+    */
     BOOK_NOT_FOUND: "0",
 
+    /**
+    * Represents a book
+    */
     book: function () {
         this.author = ko.observable();
         this.title = ko.observable();
@@ -17,6 +28,9 @@
         this.subTitle = ko.observable();
         this.image = ko.observable();
 
+        /**
+        * This function is used to fetch book details
+        */
         this.getBookInfo = function (data, event) {
             $.ajax({
                 url: 'http://it-ebooks-api.info/v1/book/'.concat(data.ID),
@@ -41,6 +55,9 @@
         } 
     },
 
+    /**
+    * Represents a collection of books
+    */
     bookList: function () {
         this.books = ko.observableArray();
         this.currentPage = ko.observable();
@@ -49,6 +66,9 @@
         this.showBookPanel = ko.observable(false);
         this.myBook = new booksAPIHelper.book();
 
+        /**
+        * This function is used to fetch the set of matching records searched by user
+        */
         this.getBooksList = function () {
             var that = this;
             if (that.searchString().trim().length > 0) {
@@ -76,6 +96,9 @@
             }
         };
 
+        /**
+        * This function is used to fetch previous 10 records
+        */
         this.gotoPrevPage = function () {
             var that = this;
             $.ajax({
@@ -97,6 +120,9 @@
             });
         };
 
+        /**
+        * This function is used to fetch next 10 records 
+        */
         this.gotoNextPage = function () {
             var that = this;
             $.ajax({
@@ -119,6 +145,9 @@
         };
     },
 
+    /**
+    * Method for handling Enter key press event
+    */
     handleKeyPress: function (data, event) {
         if (event.keyCode === booksAPIHelper.ENTER_KEY_CODE) {
             booksAPIHelper.booksViewModel.searchString($(event.currentTarget).val());
@@ -127,9 +156,14 @@
     }    
 }
 
+/**
+* Create a new booklist object and assign its reference to booksViewModel 
+*/
 booksAPIHelper.booksViewModel = new booksAPIHelper.bookList();
 
-    
+/**
+* Apply Knockout bindings
+*/
 $(document).ready(function () {    
         ko.applyBindings(booksAPIHelper.booksViewModel);
         booksAPIHelper.booksViewModel.searchString('programming'); // to load default data on-load
